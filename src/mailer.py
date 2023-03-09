@@ -20,10 +20,12 @@ def send_mail(recipient: str, subject: str, body: str) -> None:
         return
 
     if (email_sender_password):
-        smtp_server = smtplib.SMTP_SSL(email_sender_host, 465)
+        smtp_server = smtplib.SMTP(email_sender_host, 587)
     else:
         smtp_server = smtplib.SMTP(email_sender_host, 25)
 
+    smtp_server.ehlo()
+    smtp_server.starttls()
     # Login to the Gmail server
     if (email_sender_password):
         smtp_server.login(email_sender_address, email_sender_password)
