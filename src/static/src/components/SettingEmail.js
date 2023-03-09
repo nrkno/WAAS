@@ -18,28 +18,20 @@ const SettingsEmail = ({
     <main class="settings">
       <form
         onsubmit=${(evt) => {
-          evt.preventDefault();
+      evt.preventDefault();
 
-          localStorage.setItem("email", email);
+      localStorage.setItem("email", email);
 
-          pulse((sdk) => {
-            sdk.track("Engagement", {
-              type: "Engagement",
-              action: "Click",
-              object: { id: "transcribe-button" },
-            });
-          });
-
-          uploadHandler({
-            file: fileStored,
-            setJobId,
-            email,
-            setUploadStatus,
-            selectedLanguage,
-            selectedModel,
-            setErrorMessage,
-          });
-        }}
+      uploadHandler({
+        file: fileStored,
+        setJobId,
+        email,
+        setUploadStatus,
+        selectedLanguage,
+        selectedModel,
+        setErrorMessage,
+      });
+    }}
       >
         <button
           class="button-cancel"
@@ -86,13 +78,13 @@ const SettingsEmail = ({
               onchange=${(event) => setSelectedModel(event.target.value)}
             >
               ${models.map(
-                (model) =>
-                  html`
+      (model) =>
+        html`
                     <option selected=${model === selectedModel} value=${model}>
                       ${model}
                     </option>
                   `
-              )}
+    )}
             </select>
           </div>
         </details>

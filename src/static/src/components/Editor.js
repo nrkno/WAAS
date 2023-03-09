@@ -9,9 +9,9 @@ const UploadForm = ({ onChange, accentColor }) => {
     <form
       class="upload-file"
       onchange=${(event) => {
-        const file = event.target.files[0];
-        onChange(file);
-      }}
+      const file = event.target.files[0];
+      onChange(file);
+    }}
     >
       <label
         for="file-upload"
@@ -48,19 +48,9 @@ const AudioOrUpload = ({ audio, cursor, setAudio }) => {
 };
 
 const Editor = ({ jojoDoc }) => {
-  const { useState, useEffect } = preact;
+  const { useState } = preact;
   const [cursor, setCursor] = useState();
   const [audio, setAudio] = useState();
-
-  useEffect(() => {
-    window.pulse("trackPageView", {
-      object: {
-        id: "editor",
-        type: "Page",
-        name: "Editor",
-      },
-    });
-  }, []);
 
   const download = async (type) => {
     const a = document.createElement("a");
@@ -82,9 +72,9 @@ const Editor = ({ jojoDoc }) => {
               return [
                 index + 1,
                 toTimeString(segment.timeStart / 100) +
-                  ",000 --> " +
-                  toTimeString(segment.timeEnd / 100) +
-                  ",000",
+                ",000 --> " +
+                toTimeString(segment.timeEnd / 100) +
+                ",000",
                 segment.text.replace("-->", ""),
               ].join("\n");
             })

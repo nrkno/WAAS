@@ -4,9 +4,9 @@ services:
         build:
             context: .
             # use Dockerfile.gpu when using a NVIDIA GPU
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.gpu
         ports:
-            - "3000:3000"
+            - "443:3000"
         volumes:
             - .:/workspace
         depends_on:
@@ -23,7 +23,7 @@ services:
         build:
             context: .
             # use Dockerfile.gpu when using a NVIDIA GPU
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.gpu
         volumes:
             - .:/workspace
         depends_on:
@@ -31,17 +31,17 @@ services:
         environment:
             - BASE_URL
             - EMAIL_SENDER_ADDRESS
-            - EMAIL_SENDER_PASSWORD
+            - EMAIL_SENDER_PASSWORDuseEffect
             - EMAIL_SENDER_HOST
             - ALLOWED_WEBHOOKS_FILE
         command: rq worker --url redis://redis:6379 -c worker-settings
         # Uncomment the following lines when using a NVIDIA GPU
-        # deploy:
-        #     resources:
-        #         reservations:
-        #             devices:
-        #                 - driver: nvidia
-        #                   capabilities: [gpu]
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          capabilities: [ gpu ]
 
     redis:
         image: redis
