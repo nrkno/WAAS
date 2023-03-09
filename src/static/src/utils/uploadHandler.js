@@ -14,10 +14,10 @@ const uploadHandler = async ({
     const urlFormattedEmail = encodeURIComponent(email);
     const urlFormattedFileName = encodeURIComponent(removeFileExtension(file.name));
 
-    apiUrl.searchParams.set("model", selectedModel || "large");
+    apiUrl.searchParams.set("model", selectedModel || "medium");
     apiUrl.searchParams.set("email_callback", urlFormattedEmail || "");
 
-    if (file.name){
+    if (file.name) {
       apiUrl.searchParams.set("filename", urlFormattedFileName);
     }
 
