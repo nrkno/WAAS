@@ -6,7 +6,7 @@ services:
             # use Dockerfile.gpu when using a NVIDIA GPU
             dockerfile: Dockerfile.gpu
         ports:
-            - "443:3000"
+            - "3000:3000"
         volumes:
             - .:/workspace
         depends_on:
